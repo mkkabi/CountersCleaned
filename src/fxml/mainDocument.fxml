@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--fx:controller="fxml.MainDocumentController"-->
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="800.0" stylesheets="@../resources/css/tab.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MainDocumentController">
+   <children>
+      <MenuBar minWidth="-Infinity" prefHeight="25.0" prefWidth="730.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem fx:id="addHouseMenuItem" mnemonicParsing="false" onAction="#openHouseholdPopUp" text="Add new Household" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Language">
+            <items>
+              <MenuItem fx:id="languageENMenu" mnemonicParsing="false" text="English" />
+                  <MenuItem fx:id="languageRUMenu" mnemonicParsing="false" text="Русский" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
+      <AnchorPane fx:id="addHousePopUp" prefHeight="240.0" prefWidth="180.0" visible="false">
+         <children>
+            <Button fx:id="closeAddHousePopUp" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" text="x" textAlignment="CENTER" textOverrun="CLIP" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+               <padding>
+                  <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
+               </padding>
+            </Button>
+            <TextField fx:id="newHouseholdName" layoutX="15.0" layoutY="14.0" promptText="Name" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="53.0" prefHeight="15.0" prefWidth="146.0" text="Counters to add" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="65.0" />
+            <CheckBox fx:id="waterCheckBox" layoutX="17.0" layoutY="68.0" mnemonicParsing="false" text="Water" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="90.0" />
+            <CheckBox fx:id="gasCheckBox" layoutX="17.0" layoutY="86.0" mnemonicParsing="false" text="Gas" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="118.0" />
+            <CheckBox fx:id="electricityCheckBox" layoutX="17.0" layoutY="104.0" mnemonicParsing="false" text="Electricity" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="146.0" />
+            <Button fx:id="saveHousehold" layoutX="19.0" layoutY="216.0" mnemonicParsing="false" onAction="#saveHousehold" text="Save" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

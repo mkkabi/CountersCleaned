@@ -1,0 +1,72 @@
+/*==========================*Main MENU*=========================*/
+
+.menu-item .label {
+    -fx-padding: 0 10px 0 10px;
+}
+/*END=======================*Main MENU*=========================*/
+
+/*==========================*PopUPs, Dialog Boxes*=========================*/
+
+#contextMenu, #popUp1, #addHousePopUp, #addCounterPane, #infoBox {
+    -fx-background-color: #eeeeee;
+    -fx-spacing: 5;
+    -fx-opacity: 0.95;
+    -fx-border-color: #dedede;
+    -fx-border-style: solid inside;  
+    -fx-border-width: 2; 
+}
+
+#infoBox{
+    -fx-max-height: 10;
+}
+#infoBox .label{
+    -fx-padding: 5 20 5 20;
+    -fx-text-fill: #3b8fff;
+    -fx-font-weight: bold;
+}
+
+#counterImage{
+    -fx-opacity: 0.75;
+}
+
+
+/*#addHousePopUp .label, #addHousePopUp checkbox {
+    -fx-margin-top: 15;
+    -fx-vgap: 15;
+    -fx-min-height: 30;
+    -fx-padding: 30;
+}*/
+/*END=======================*PopUPs, Dialog Boxes*=========================*/
+
+/*==========================*Buttons*=========================*/
+#closeAddHousePopUp, #closeAddCounterButton{
+    -fx-pref-height: 16;
+    -fx-min-height: 16;
+    -fx-pref-width: 20;
+ 
+}
+ 
+.button {
+    -fx-pref-height: 30;
+    -fx-background-color: #cccccc;
+}
+
+
+/*#contextMenu .button {
+    -fx-pref-width: 200;
+}*/
+ 
+.button:hover {
+    -fx-background-color: #3b8fff;
+/*    -fx-padding: 10; 
+    -fx-border-style: solid inside;  
+    -fx-border-width: 2;  */
+/*    -fx-border-insets: 5;  
+    -fx-border-radius: 5;  */
+/*-fx-border-color: #545454;*/
+    -fx-text-fill: #ffffff;
+}
+
+/*END=======================*Buttons*=========================*/
+
+ 
