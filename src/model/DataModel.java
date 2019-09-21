@@ -1,5 +1,6 @@
 package model;
 
+import controller.DataController;
 import fxml.InfoBox;
 import fxml.TabController;
 import fxml.TranslationController;
@@ -17,7 +18,6 @@ public class DataModel {
 
     public void addTab(TabPane tabPane, String s) {
         Household h = new Household(s);
-        application.NIO.createDir(s);
         loadTab(tabPane, h);
     }
 

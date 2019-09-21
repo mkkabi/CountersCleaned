@@ -14,19 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import model.AbstractCounter;
 import model.DataModel;
-import model.CounterSolid;
 import model.Counter;
-import model.GasCounter;
-import model.WaterCounter;
-
 
 public class ListController<T> {
-
-    private final Image IMAGE_WATER = new Image("/resources/images/water.png");
-    private final Image IMAGE_GAS = new Image("/resources/images/gas.png");
-    private final Image IMAGE_ELECTRICITY = new Image("/resources/images/electricity.png");
 
     private ObservableList itemsObservableList;
     private final ListView listView;
@@ -52,7 +43,9 @@ public class ListController<T> {
                     commitEdit(getItem());
                 });
                 textField.addEventFilter(KeyEvent.KEY_RELEASED, e -> {
+
                     if (e.getCode() == KeyCode.ESCAPE) {
+                        System.out.println("edit canceled of ListController");
                         cancelEdit();
                     }
                 });
@@ -72,25 +65,29 @@ public class ListController<T> {
                 deleteItem.setOnAction(event -> {
                     removeItem(item);
                 });
-                contextMenu.getItems().addAll(deleteItem);
+
+                MenuItem sortAZ = new MenuItem();
+                sortAZ.textProperty().bind(Bindings.format("Sort A-Z"));
+                sortAZ.setOnAction(event -> {
+                    sortAZ();
+                });
+
+                MenuItem sortZA = new MenuItem();
+                sortZA.textProperty().bind(Bindings.format("Sort Z-A"));
+                sortZA.setOnAction(event -> {
+                    sortZA();
+                });
+
+                contextMenu.getItems().addAll(deleteItem, sortAZ, sortZA);
 
                 if (empty) {
                     setContextMenu(null);
                     setText(null);
                     setGraphic(null);
                 } else {
-                    if (item instanceof WaterCounter) {
-                        imageView.setImage(IMAGE_WATER);
-                    }
-                    if (item instanceof GasCounter) {
-                        imageView.setImage(IMAGE_GAS);
-                    }
-                    if (item instanceof CounterSolid) {
-                        imageView.setImage(IMAGE_ELECTRICITY);
-                    }
-
+                    Image image = new Image(item.getImage());
+                    imageView.setImage(image);
                     setContextMenu(contextMenu);
-
                     imageView.setId("counterImage");
                     setText(item.toString());
                     setGraphic(imageView);
@@ -117,6 +114,7 @@ public class ListController<T> {
             @Override
             public void commitEdit(Counter t) {
                 super.commitEdit(t);
+                System.out.println("ListController.commitEdit()");
                 t.setName(textField.getText());
                 setText(textField.getText());
                 setGraphic(imageView);
@@ -130,6 +128,22 @@ public class ListController<T> {
         itemsArrayList.remove(t);
         listView.refresh();
         model.showInfoMessage("removed from list " + t.toString());
+    }
+
+    private void sortAZ() {
+        itemsArrayList.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+        itemsObservableList.clear();
+        initList();
+    }
+
+    private void sortZA() {
+        itemsArrayList.sort((o1, o2) -> o2.toString().compareTo(o1.toString()));
+        try {
+            itemsObservableList.clear();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        initList();
     }
 
     public void addNewItem(Counter t) {

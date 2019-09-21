@@ -29,7 +29,7 @@
         </menus>
       </MenuBar>
       <TabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
-      <AnchorPane fx:id="addHousePopUp" onKeyPressed="#checkForEnter" prefHeight="240.0" prefWidth="180.0" visible="false">
+      <AnchorPane fx:id="addHousePopUp" prefHeight="240.0" prefWidth="180.0" visible="false">
          <children>
             <Button fx:id="closeAddHousePopUp" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" text="x" textAlignment="CENTER" textOverrun="CLIP" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                <padding>

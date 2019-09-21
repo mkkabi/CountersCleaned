@@ -30,10 +30,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
@@ -43,12 +41,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
@@ -56,7 +52,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.annotation.processing.FilerException;
 import model.DataModel;
@@ -68,7 +63,7 @@ import org.apache.commons.csv.CSVRecord;
 public class TableViewCSVEditable {
 
     @FXML
-    private TableView<CSVRow> tableView;
+    private final TableView<CSVRow> tableView;
 
     @FXML
     private AnchorPane root;
@@ -79,7 +74,7 @@ public class TableViewCSVEditable {
     private Integer numbeColumns = 0;
     private File file;
     private boolean saved = true;
-    private DataModel model;
+    private final DataModel model;
 
     public TableViewCSVEditable(TableView t, DataModel d) {
         this.tableView = t;
@@ -94,31 +89,22 @@ public class TableViewCSVEditable {
         contextMenu.setAutoHide(true);
 
         MenuItem inserirLinha = new MenuItem("Insert row");
-        inserirLinha.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                addNewRow();
-                setNotSaved();
-            }
+        inserirLinha.setOnAction((ActionEvent t) -> {
+            addNewRow();
+            setNotSaved();
         });
 
         contextMenu.getItems().add(inserirLinha);
         MenuItem removerLinha = new MenuItem("Delete Row");
-        removerLinha.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                deleteRow();
-                setNotSaved();
-            }
+        removerLinha.setOnAction((ActionEvent t) -> {
+            deleteRow();
+            setNotSaved();
         });
         contextMenu.getItems().add(removerLinha);
 
         MenuItem save = new MenuItem("Save changes");
-        save.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                onSalvarActionEvent();
-            }
+        save.setOnAction((ActionEvent event) -> {
+            onSalvarActionEvent();
         });
         contextMenu.getItems().add(save);
 
@@ -214,9 +200,9 @@ public class TableViewCSVEditable {
     private void addNewColumn() {
         List<TablePosition> cells = tableView.getSelectionModel().getSelectedCells();
         int columnIndex = cells.get(0).getColumn();
-        for (CSVRow row : tableView.getItems()) {
+        tableView.getItems().forEach((row) -> {
             row.addColumn(columnIndex);
-        }
+        });
         numbeColumns++;
         tableView.getColumns().add(createColumn(numbeColumns - 1));
         tableView.refresh();
@@ -225,9 +211,9 @@ public class TableViewCSVEditable {
     private void deleteColumn() {
         List<TablePosition> cells = tableView.getSelectionModel().getSelectedCells();
         int columnIndex = cells.get(0).getColumn();
-        for (CSVRow row : tableView.getItems()) {
+        tableView.getItems().forEach((row) -> {
             row.removeColumn(columnIndex);
-        }
+        });
         numbeColumns--;
         tableView.getColumns().remove(tableView.getColumns().size() - 1);
         tableView.refresh();

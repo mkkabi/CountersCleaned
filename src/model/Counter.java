@@ -2,15 +2,23 @@ package model;
 
 import java.io.Serializable;
 
-public interface Counter extends Serializable {
-    
-    	 void setName(String name);
+public interface Counter extends Serializable, Comparable {
 	 String getName();
-	 void setPreviousData(double previousData);
-	 double getPreviousData();
-	 void setRate(double rate);
-	 double getRate();
-	 void setFileName(String f);
 	 String getFileName();
 	 String toString();
+         String getImage();
+         
+	 double getPreviousData();
+	 double getRate();
+	 
+         void setType(CounterType type);
+         void setSerialNumber();
+         void setPreviousData(double previousData);
+         void setName(String name);
+         void setRate(double rate);
+         void setFileName(String f);
+         void assignToHouse(Household house);
+         
+         
+         int getSerialNumber();
 }

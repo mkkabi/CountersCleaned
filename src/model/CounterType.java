@@ -2,14 +2,16 @@ package model;
 
 public enum CounterType {
 
-   WATER ("/resources/images/water.png"),
-   GAS ("/resources/images/gas.png"),
-   ELECTRICITY ("resources/images/electricity.png"),
-   CUSTOM ("");
+   WATER ("water","/resources/images/water.png"),
+   GAS ("gas","/resources/images/gas.png"),
+   ELECTRICITY ("electricity","resources/images/electricity.png"),
+   CUSTOM ("custom","resources/images/tachometer.png");
 
    private String icoLocation;
+   private String name;
    
-   CounterType(String ico) {
+   CounterType(String name, String ico) {
+       this.name = name;
        this.icoLocation = ico;
    }
 

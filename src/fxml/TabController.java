@@ -1,5 +1,6 @@
 package fxml;
 
+import controller.DataController;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,18 +24,15 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import model.DataModel;
 import model.Household;
-import model.WaterCounter;
 import model.AbstractCounter;
 import model.CounterSolid;
-import model.GasCounter;
 import model.Counter;
+import model.CounterType;
 
-public class TabController<T extends AbstractCounter> extends Tab implements Initializable {
+public class TabController<T extends Counter> extends Tab implements Initializable {
 
     @FXML
     private ListView countersList;
@@ -56,11 +54,9 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
     private ListController<Counter> countersListController;
     private AbstractCounter currentCounter;
     TableViewCSVEditable tableCSV;
-    
+
     @FXML
     private TableView<ObservableList<String>> tableView;
-
-    TableViewDynamic tvd;
 
     public TabController(Household h) {
         house = h;
@@ -91,14 +87,17 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
         countersListController.initList();
         application.NIO nio = new application.NIO();
         countersListController.setSelectionModel(t -> {
+            if(t!=null){
             currentCounter = (AbstractCounter) t;
             previousDataTextField.setText(currentCounter.getPreviousData() + "");
-            tableCSV.initialize(".\\" + house.getName() + "\\" + currentCounter.getFileName());
-//                        house.getName() + "/" + counter.getFileName()
-            System.out.println("./" + house.getName() + "/" + currentCounter.getFileName());
+            tableCSV.initialize(DataController.appHome + currentCounter.getFileName());
+            System.out.println("Curret counter = "+currentCounter.getFileName());
+            }else{
+                System.out.println("counter = null");
+            }
         });
 
-        counterTypes.getItems().addAll("Water Counter", "Gas Counter", "Electricity Counter");
+        counterTypes.getItems().addAll("Water Counter", "Gas Counter", "Electricity Counter", "Other");
 
         addCounterButton.setOnMouseClicked(t -> {
             openAddCounterPane();
@@ -161,7 +160,8 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
 
     @FXML
     private void addNewCounter() {
-        Counter counter = null;
+        Counter counter = new CounterSolid("counter");
+        Double rate = null;
 
         if (newCounterName.getText() == null || newCounterName.getText().length() < 1) {
             model.showInfoMessage("enter Counter name");
@@ -176,12 +176,10 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
             return;
         }
 
-        Double rate = null;
-
         String name = Objects.requireNonNull(newCounterName.getText());
         try {
             rate = Objects.requireNonNull(Double.parseDouble(newCounterRate.getText()));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             model.showInfoMessage("only number in the rate field allowed");
         }
 
@@ -189,21 +187,26 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
 
         switch (counterType) {
             case "Water Counter":
-                counter = new WaterCounter(name);
+                counter.setType(CounterType.WATER);
                 break;
             case "Gas Counter":
-                counter = new GasCounter(name);
+                counter.setType(CounterType.GAS);
                 break;
             case "Electricity Counter":
-                counter = new CounterSolid(name);
+                counter.setType(CounterType.ELECTRICITY);
+                break;
+            case "Other":
+                counter.setType(CounterType.CUSTOM);
                 break;
             default:
                 model.showInfoMessage("Select counter type!");
         }
 
         counter.setRate(rate);
-        counter.setFileName(house.getName() + "_" + counter.getName() + ".csv");
-        application.NIO.createCounterFile(house.getName() + "/" + counter.getFileName());
+        counter.setName(name);
+        counter.setFileName(house.getName() + "_" + counter.getName() +"_"+counter.getSerialNumber()+ ".csv");
+        
+        application.NIO.createCounterFile(DataController.appHome + counter.getFileName());
         countersListController.addNewItem(counter);
         closeAddCounterPane();
         model.showInfoMessage("new Counter " + counter.getName());
@@ -223,8 +226,7 @@ public class TabController<T extends AbstractCounter> extends Tab implements Ini
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = format.format(new Date());
         String textToSave = dateString + "," + previous + "," + current + "," + difference + "," + currentCounter.getRate() + "," + result;
-        model.saveCalculation(house.getName() + "/" + currentCounter.getFileName(), textToSave);
-//		tvd.createTableView(house.getName() + "/" + currentCounter.getFileName());
-        tableCSV.initialize(house.getName() + "/" + currentCounter.getFileName());
+        model.saveCalculation(DataController.appHome + currentCounter.getFileName(), textToSave);
+        tableCSV.initialize(DataController.appHome + currentCounter.getFileName());
     }
 }
