@@ -9,13 +9,14 @@ public abstract class AbstractCounter implements Counter {
     protected double rate, previousData;
     protected CounterType type;
     protected int serialNumber;
+    protected static int count;
     protected Household house;
 
     
-    @Override
-    public void setSerialNumber(){
-        this.serialNumber = (int)(Math.random()*10000)+name.chars().sum();
-    }
+//    @Override
+//    public void setSerialNumber(){
+//        this.serialNumber = (int)(Math.random()*10000)+name.chars().sum();
+//    }
     
     @Override
     public void assignToHouse(Household house){

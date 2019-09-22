@@ -21,7 +21,6 @@ public class InfoBox extends AnchorPane {
         label.setAlignment(Pos.CENTER);
         InfoBox.setLeftAnchor(label, 15.0);
         InfoBox.setRightAnchor(label, 15.0);
-
     }
 
     public void setText(String message) {

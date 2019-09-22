@@ -1,12 +1,12 @@
 package model;
 
-import controller.DataController;
+import controller.NIO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Household<T extends AbstractCounter> implements Serializable {
 
-    public static final String SAVE_FILE = DataController.appHome + "houses.ser";
+    public static final String SAVE_FILE = NIO.appHome + "houses.ser";
     public static ArrayList<Household> housholds = new ArrayList();
     private final String name;
     private ArrayList<T> counters;

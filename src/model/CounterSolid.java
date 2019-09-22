@@ -4,15 +4,15 @@ import java.time.Instant;
 import java.time.temporal.ChronoField;
 import java.util.Date;
 
-public class CounterSolid extends AbstractCounter{
+public class CounterSolid extends AbstractCounter {
 
     CounterType type;
-    
+
     public CounterSolid(String n) {
         this.name = n;
-        this.setSerialNumber();
+        count++;
+        this.serialNumber = count;
+
     }
 
-    
- 
 }

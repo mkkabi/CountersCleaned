@@ -6,11 +6,14 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
+
+// Creates TranslateTransitions to move app elements in scene
 public class TranslationController {
 
     private static final int MESSAGE_DURATION = 2500;
 
     public static TranslateTransition translateFromLeftBottom(Node node, double nodeWidth, double nodeHeight) {
+        
         TranslateTransition tr = new TranslateTransition(Duration.millis(500), node);
         tr.setFromX(node.getLayoutX());
         tr.setToX(node.getLayoutX() + nodeWidth);

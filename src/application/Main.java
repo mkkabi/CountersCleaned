@@ -16,6 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+                
 
         FXMLLoader mainDocumentLoader = new FXMLLoader();
         mainDocumentLoader.setLocation(getClass().getResource("/fxml/mainDocument.fxml"));
@@ -27,7 +28,7 @@ public class Main extends Application {
         infoBox.setVisible(false);
         root.getChildren().addAll(infoBox);
 
-        DataModel model = new DataModel();
+        DataModel model = DataModel.getInstance();
         mainDocumentController.initModel(model);
         model.setInfoBox(infoBox);
 

@@ -12,7 +12,6 @@ public interface Counter extends Serializable, Comparable {
 	 double getRate();
 	 
          void setType(CounterType type);
-         void setSerialNumber();
          void setPreviousData(double previousData);
          void setName(String name);
          void setRate(double rate);

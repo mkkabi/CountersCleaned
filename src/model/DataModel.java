@@ -11,8 +11,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 
 public class DataModel {
+    
+    private DataModel(){}
+    
+    private static volatile DataModel instance = null;
+    
+    public static DataModel getInstance() {
+        if (instance == null) {
+            synchronized (DataModel.class) {
+                if (instance == null) {
+                    instance = new DataModel();
+                }
+            }
+        }
+        return instance;
+    }
 
-    application.Serializer<Household> ser = new application.Serializer();
+    controller.Serializer<Household> ser = new controller.Serializer();
     InfoBox infoBox;
     TranslateTransition translation;
 
@@ -70,7 +85,7 @@ public class DataModel {
     }
 
     public static void saveCalculation(String uri, String text) {
-        application.NIO.appendLine(uri, text);
+        controller.NIO.appendLine(uri, text);
 
     }
 }

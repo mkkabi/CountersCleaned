@@ -1,5 +1,6 @@
 package fxml;
 
+import controller.NIO;
 import controller.DataController;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -54,6 +55,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     private ListController<Counter> countersListController;
     private AbstractCounter currentCounter;
     TableViewCSVEditable tableCSV;
+    private controller.NIO nio;
 
     @FXML
     private TableView<ObservableList<String>> tableView;
@@ -85,12 +87,12 @@ public class TabController<T extends Counter> extends Tab implements Initializab
 
         countersListController = new ListController(countersList, house.getCounters(), model);
         countersListController.initList();
-        application.NIO nio = new application.NIO();
+        nio = NIO.getInstance();
         countersListController.setSelectionModel(t -> {
             if(t!=null){
             currentCounter = (AbstractCounter) t;
             previousDataTextField.setText(currentCounter.getPreviousData() + "");
-            tableCSV.initialize(DataController.appHome + currentCounter.getFileName());
+            tableCSV.initialize(nio.appHome + currentCounter.getFileName());
             System.out.println("Curret counter = "+currentCounter.getFileName());
             }else{
                 System.out.println("counter = null");
@@ -206,7 +208,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         counter.setName(name);
         counter.setFileName(house.getName() + "_" + counter.getName() +"_"+counter.getSerialNumber()+ ".csv");
         
-        application.NIO.createCounterFile(DataController.appHome + counter.getFileName());
+        nio.createCounterFile(nio.appHome + counter.getFileName());
         countersListController.addNewItem(counter);
         closeAddCounterPane();
         model.showInfoMessage("new Counter " + counter.getName());
@@ -226,7 +228,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = format.format(new Date());
         String textToSave = dateString + "," + previous + "," + current + "," + difference + "," + currentCounter.getRate() + "," + result;
-        model.saveCalculation(DataController.appHome + currentCounter.getFileName(), textToSave);
-        tableCSV.initialize(DataController.appHome + currentCounter.getFileName());
+        model.saveCalculation(nio.appHome + currentCounter.getFileName(), textToSave);
+        tableCSV.initialize(nio.appHome + currentCounter.getFileName());
     }
 }
