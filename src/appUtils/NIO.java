@@ -1,4 +1,4 @@
-package controller;
+package appUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -39,12 +39,12 @@ public class NIO {
         return instance;
     }
 
-    public static void createCounterFile(String uri) {
+    public static void createFile(String uri) {
         Path path = Paths.get(uri);
         try {
             Files.createFile(path);
         } catch (IOException ex) {
-            System.out.println(ex.toString() + " from aplication.NIO");
+            Logger.getGlobal().log(Level.INFO, ex.toString());
         }
     }
 
@@ -53,7 +53,7 @@ public class NIO {
         try {
             Files.createDirectories(path);
         } catch (IOException ex) {
-            System.out.println(ex.toString() + " in NIO.createDir()");
+            Logger.getGlobal().log(Level.INFO, ex.toString());
         }
     }
 
@@ -63,7 +63,7 @@ public class NIO {
             Files.write(path, Arrays.asList(text), StandardCharsets.UTF_8,
                     Files.exists(path) ? StandardOpenOption.APPEND : StandardOpenOption.CREATE);
         } catch (final IOException ioe) {
-            System.out.println(ioe.toString());
+            Logger.getGlobal().log(Level.INFO, ioe.toString());
         }
     }
 
@@ -72,7 +72,7 @@ public class NIO {
         try (FileWriter fw = new FileWriter(new File(uri));) {
             fw.write(text);
         } catch (IOException ex) {
-            System.out.println(ex.toString() + " from application.NIO");
+            Logger.getGlobal().log(Level.INFO, ex.toString());
         }
     }
 
@@ -95,9 +95,9 @@ public class NIO {
                 result.append(line + "\n");
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("File was not found");
+            Logger.getGlobal().log(Level.INFO, "File was not found");
         } catch (IOException e) {
-            System.out.println(e.toString() + "in NIO.fileToString()");
+            Logger.getGlobal().log(Level.INFO, e.toString());
         }
         return result.toString();
     }
@@ -123,11 +123,11 @@ public class NIO {
     public static boolean renameFile(String fileUri, String newName) {
         return new File(fileUri).renameTo(new File(newName));
     }
-    
-    public static boolean deleteFile(String uri){
+
+    public static boolean deleteFile(String uri) {
         try {
             return Files.deleteIfExists(Paths.get(uri));
-            
+
         } catch (IOException ex) {
             Logger.getLogger(NIO.class.getName()).log(Level.SEVERE, null, ex);
         }

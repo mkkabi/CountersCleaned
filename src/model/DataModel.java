@@ -1,21 +1,22 @@
 package model;
 
-import controller.DataController;
 import fxml.InfoBox;
 import fxml.TabController;
 import fxml.TranslationController;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 
 public class DataModel {
-    
-    private DataModel(){}
-    
+
+    private DataModel() {
+    }
+
     private static volatile DataModel instance = null;
-    
+
     public static DataModel getInstance() {
         if (instance == null) {
             synchronized (DataModel.class) {
@@ -27,7 +28,7 @@ public class DataModel {
         return instance;
     }
 
-    controller.Serializer<Household> ser = new controller.Serializer();
+    appUtils.Serializer ser = appUtils.Serializer.getInstance();
     InfoBox infoBox;
     TranslateTransition translation;
 
@@ -52,14 +53,12 @@ public class DataModel {
     }
 
     public void restoreTabFromSave(TabPane tabPane) {
-        try {
-            ser.restoreObjects(Household.SAVE_FILE, t -> {
-                loadTab(tabPane, (Household) t);
-                Household.housholds.add((Household) t);
-            });
-        } catch (FileNotFoundException f) {
-            System.out.println(f.toString());
-        }
+        ser.restoreObjects(Household.SAVE_FILE, t -> {
+            Household house = (Household) t;
+            loadTab(tabPane, (Household) t);
+            Household.housholds.add((Household) t);
+            Logger.getGlobal().log(Level.INFO, "loaded " + t.toString());
+        });
     }
 
     public void removeHousehold(Household house) {
@@ -85,7 +84,6 @@ public class DataModel {
     }
 
     public static void saveCalculation(String uri, String text) {
-        controller.NIO.appendLine(uri, text);
-
+        appUtils.NIO.appendLine(uri, text);
     }
 }

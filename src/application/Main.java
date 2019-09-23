@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.DataModel;
+import appUtils.AppLogger;
+import appUtils.NIO;
 
 public class Main extends Application {
 
@@ -17,6 +19,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
                 
+        //initializing loggers
+        AppLogger.load();
+        //initializing NIO class to create app home folder
+        NIO.getInstance();
 
         FXMLLoader mainDocumentLoader = new FXMLLoader();
         mainDocumentLoader.setLocation(getClass().getResource("/fxml/mainDocument.fxml"));

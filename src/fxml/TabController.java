@@ -1,7 +1,6 @@
 package fxml;
 
-import controller.NIO;
-import controller.DataController;
+import appUtils.NIO;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,7 +54,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     private ListController<Counter> countersListController;
     private AbstractCounter currentCounter;
     TableViewCSVEditable tableCSV;
-    private controller.NIO nio;
+    private appUtils.NIO nio;
 
     @FXML
     private TableView<ObservableList<String>> tableView;
@@ -208,7 +207,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         counter.setName(name);
         counter.setFileName(house.getName() + "_" + counter.getName() +"_"+counter.getSerialNumber()+ ".csv");
         
-        nio.createCounterFile(nio.appHome + counter.getFileName());
+        nio.createFile(nio.appHome + counter.getFileName());
         countersListController.addNewItem(counter);
         closeAddCounterPane();
         model.showInfoMessage("new Counter " + counter.getName());

@@ -1,6 +1,6 @@
 package model;
 
-import controller.NIO;
+import appUtils.NIO;
 import java.io.Serializable;
 import java.util.ArrayList;
 

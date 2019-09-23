@@ -1,8 +1,10 @@
 package fxml;
 
-import controller.AppLogger;
+import appUtils.AppLogger;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,8 +48,7 @@ public class ListController<T> {
                 textField.addEventFilter(KeyEvent.KEY_RELEASED, e -> {
 
                     if (e.getCode() == KeyCode.ESCAPE) {
-                        AppLogger.getInstance().getLogger().info("edit canceled of ListController");
-                        System.out.println("edit canceled of ListController");
+                        Logger.getGlobal().log(Level.INFO, "edit canceled of ListController");
                         cancelEdit();
                     }
                 });
@@ -116,8 +117,7 @@ public class ListController<T> {
             @Override
             public void commitEdit(Counter t) {
                 super.commitEdit(t);
-                AppLogger.getInstance().getLogger().info("ListController.commitEdit()");
-                System.out.println("ListController.commitEdit()");
+                Logger.getGlobal().log(Level.INFO, "ListController.commitEdit()");
                 t.setName(textField.getText());
                 setText(textField.getText());
                 setGraphic(imageView);
@@ -130,7 +130,7 @@ public class ListController<T> {
         itemsObservableList.remove(t);
         itemsArrayList.remove(t);
         listView.refresh();
-        AppLogger.getInstance().getLogger().info("removed from list " + t.toString());
+        Logger.getGlobal().log(Level.INFO, "removed from list " + t.toString());
         model.showInfoMessage("removed from list " + t.toString());
     }
 
@@ -145,8 +145,7 @@ public class ListController<T> {
         try {
             itemsObservableList.clear();
         } catch (Exception e) {
-            AppLogger.getInstance().getLogger().info(e.toString());
-            System.out.println(e.toString());
+            Logger.getGlobal().log(Level.INFO, e.toString());
         }
         initList();
     }
