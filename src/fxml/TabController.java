@@ -39,9 +39,10 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     @FXML
     private ComboBox counterTypes;
     @FXML
-    private AnchorPane tabAnchorPane, addCounterPane;
+    private AnchorPane addCounterPane, tabAnchorPane, counterEditor;
+  
     @FXML
-    private Button calculateButton, addCounterButton;
+    private Button calculateButton, addCounterButton, openEditCounterButton;
     @FXML
     private Label tabName;
     @FXML
@@ -78,7 +79,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
 /////////////////////TABLEVIEW////////////////////////////////
         tableCSV = new TableViewCSVEditable(tableView, model);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-//END TABLEVIEW////////////////////////////////
+/////////////////////END TABLEVIEW////////////////////////////////
 
         tabName.setText(house.getName());
 
@@ -106,6 +107,16 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         });
 
     }
+    
+//    public static void editCounter(Counter c){
+//        openEditCounterPane();
+//    }
+    
+    @FXML
+    public void openEditCounterPane(){
+//        counterEditor.setLayoutX((tabAnchorPane.getWidth() - counterEditor.getPrefWidth()) / 2);
+        counterEditor.setVisible(true);
+    }
 
     @FXML
     public void deleteTab() {
@@ -128,12 +139,6 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         } else {
             this.getTabPane().getTabs().remove(this);
         }
-    }
-
-    @FXML
-    public void openEditCounterPopUp() {
-        System.out.println(tabAnchorPane.getWidth());
-        System.out.println(tabAnchorPane.getHeight());
     }
 
     @FXML
@@ -161,7 +166,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
 
     @FXML
     private void addNewCounter() {
-        Counter counter = new CounterSolid("counter");
+        Counter counter = new CounterSolid("counter", house);
         Double rate = null;
 
         if (newCounterName.getText() == null || newCounterName.getText().length() < 1) {

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="CountersCleaned">
+  <ClassDiagramComponents>
+    <Class name="Main" package="application" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="root" type="AnchorPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="primaryStage"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TranslationController" package="fxml" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="MESSAGE_DURATION" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="translateFromLeftBottom" returnType="TranslateTransition" visibility="public" isStatic="true">
+          <Argument type="Node" name="node"/>
+          <Argument type="double" name="nodeWidth"/>
+          <Argument type="double" name="nodeHeight"/>
+        </Method>
+        <Method name="translateObjBottomUp" returnType="TranslateTransition" visibility="public" isStatic="true">
+          <Argument type="Node" name="node"/>
+          <Argument type="double" name="nodeWidth"/>
+          <Argument type="double" name="nodeHeight"/>
+        </Method>
+        <Method name="translateObjTopDown" returnType="TranslateTransition" visibility="public" isStatic="true">
+          <Argument type="Node" name="node"/>
+          <Argument type="double" name="nodeWidth"/>
+          <Argument type="double" name="nodeHeight"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InfoBox" package="fxml" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initBox" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="setText" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ListController" package="fxml" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="itemsObservableList" type="ObservableList" visibility="private"/>
+        <Field name="listView" type="ListView" visibility="private" isFinal="true"/>
+        <Field name="itemsArrayList" type="ArrayList" visibility="private"/>
+        <Field name="model" type="DataModel" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ListView" name="c"/>
+          <Argument type="ArrayList" name="arr"/>
+          <Argument type="DataModel" name="dm"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initList" returnType="void" visibility="public"/>
+        <Method name="removeItem" returnType="void" visibility="public">
+          <Argument type="Counter" name="t"/>
+        </Method>
+        <Method name="sortAZ" returnType="void" visibility="private"/>
+        <Method name="sortZA" returnType="void" visibility="private"/>
+        <Method name="addNewItem" returnType="void" visibility="public">
+          <Argument type="Counter" name="t"/>
+        </Method>
+        <Method name="setSelectionModel" returnType="void" visibility="public">
+          <Argument type="Consumer" name="c"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TabController" package="fxml" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="countersList" type="ListView" visibility="private"/>
+        <Field name="counterTypes" type="ComboBox" visibility="private"/>
+        <Field name="addCounterPane" type="AnchorPane" visibility="private"/>
+        <Field name="calculateButton" type="Button" visibility="private"/>
+        <Field name="tabName" type="Label" visibility="private"/>
+        <Field name="contextMenu" type="VBox" visibility="private"/>
+        <Field name="newCounterName" type="TextField" visibility="package"/>
+        <Field name="tabContextMenuTranslation" type="TranslateTransition" visibility="private"/>
+        <Field name="house" type="Household" visibility="private" isFinal="true"/>
+        <Field name="countersObservableList" type="ObservableList&lt;Counter&gt;" visibility="private"/>
+        <Field name="countersListController" type="ListController&lt;Counter&gt;" visibility="private"/>
+        <Field name="currentCounter" type="AbstractCounter" visibility="private"/>
+        <Field name="tableCSV" type="TableViewCSVEditable" visibility="package"/>
+        <Field name="nio" type="appUtils.NIO" visibility="private"/>
+        <Field name="tableView" type="TableView&lt;ObservableList&lt;String&gt;&gt;" visibility="private"/>
+        <Field name="model" type="DataModel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Household" name="h"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initModel" returnType="void" visibility="public">
+          <Argument type="DataModel" name="model"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="URL" name="location"/>
+          <Argument type="ResourceBundle" name="resources"/>
+        </Method>
+        <Method name="openEditCounterPane" returnType="void" visibility="public"/>
+        <Method name="deleteTab" returnType="void" visibility="public"/>
+        <Method name="closeTab" returnType="void" visibility="private"/>
+        <Method name="openContextMenu" returnType="void" visibility="private"/>
+        <Method name="closeContextMenu" returnType="void" visibility="private"/>
+        <Method name="openAddCounterPane" returnType="void" visibility="private"/>
+        <Method name="closeAddCounterPane" returnType="void" visibility="private"/>
+        <Method name="addNewCounter" returnType="void" visibility="private"/>
+        <Method name="calculate" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="MainDocumentController" package="fxml" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="dialogBoxLabel" type="Label" visibility="private"/>
+        <Field name="waterCheckBox" type="CheckBox" visibility="private"/>
+        <Field name="closeAddHousePopUp" type="Button" visibility="private"/>
+        <Field name="addHousePopUp" type="AnchorPane" visibility="private"/>
+        <Field name="newHouseholdName" type="TextField" visibility="private"/>
+        <Field name="tabPane" type="TabPane" visibility="private"/>
+        <Field name="model" type="DataModel" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="initModel" returnType="void" visibility="public">
+          <Argument type="DataModel" name="model"/>
+        </Method>
+        <Method name="saveHousehold" returnType="void" visibility="public"/>
+        <Method name="checkForEnter" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="ke"/>
+        </Method>
+        <Method name="openHouseholdPopUp" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="CSVRow" package="fxml" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="columns" type="List&lt;SimpleStringProperty&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="List&lt;SimpleStringProperty&gt;" name="columns"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getColumns" returnType="List&lt;SimpleStringProperty&gt;" visibility="public"/>
+        <Method name="addColumn" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="String" name="value"/>
+        </Method>
+        <Method name="addColumn" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="package"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="removeColumn" returnType="void" visibility="package">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TableViewCSVEditable" package="fxml" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="tableView" type="TableView&lt;CSVRow&gt;" visibility="private" isFinal="true"/>
+        <Field name="root" type="AnchorPane" visibility="private"/>
+        <Field name="fileChooser" type="FileChooser" visibility="private"/>
+        <Field name="csvFormat" type="CSVFormat" visibility="private"/>
+        <Field name="numbeColumns" type="Integer" visibility="private"/>
+        <Field name="file" type="File" visibility="private"/>
+        <Field name="saved" type="boolean" visibility="private"/>
+        <Field name="model" type="DataModel" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="TableView" name="t"/>
+          <Argument type="DataModel" name="d"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="String" name="filename"/>
+        </Method>
+        <Method name="onSalvarActionEvent" returnType="void" visibility="private"/>
+        <Method name="onAbrirActionEvent" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="addNewRow" returnType="void" visibility="private"/>
+        <Method name="deleteRow" returnType="void" visibility="private"/>
+        <Method name="addNewColumn" returnType="void" visibility="private"/>
+        <Method name="deleteColumn" returnType="void" visibility="private"/>
+        <Method name="openFileChooser" returnType="File" visibility="private"/>
+        <Method name="readFile" returnType="ObservableList&lt;CSVRow&gt;" visibility="private">
+          <Argument type="File" name="csvFile"/>
+        </Method>
+        <Method name="updateTable" returnType="void" visibility="private">
+          <Argument type="ObservableList&lt;CSVRow&gt;" name="rows"/>
+        </Method>
+        <Method name="setNotSaved" returnType="void" visibility="private"/>
+        <Method name="setSaved" returnType="void" visibility="private"/>
+        <Method name="onSairActionEvent" returnType="void" visibility="private">
+          <Argument type="ActionEvent" name="event"/>
+        </Method>
+        <Method name="sair" returnType="void" visibility="private"/>
+        <Method name="createColumn" returnType="TableColumn&lt;CSVRow, String&gt;" visibility="private">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="adjustColumns" returnType="void" visibility="private">
+          <Argument type="List&lt;SimpleStringProperty&gt;" name="columns"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AbstractCustomCounter" package="model" visibility="public" isAbstract="true" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="CounterSolid" package="model" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="type" type="CounterType" visibility="package"/>
+        <Field name="house" type="Household" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="n"/>
+          <Argument type="Household" name="h"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Enum name="CounterType" package="model" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Literals>
+        <Literal name="WATER"/>
+        <Literal name="GAS"/>
+        <Literal name="ELECTRICITY"/>
+        <Literal name="CUSTOM"/>
+      </Literals>
+    </Enum>
+    <Class name="Household" package="model" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="SAVE_FILE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="housholds" type="ArrayList&lt;Household&gt;" visibility="public" isStatic="true"/>
+        <Field name="name" type="String" visibility="private" isFinal="true"/>
+        <Field name="counters" type="ArrayList&lt;T&gt;" visibility="private"/>
+        <Field name="ID" type="int" visibility="private" isFinal="true"/>
+        <Field name="countersNumber" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="increateCountersNumber" returnType="void" visibility="public"/>
+        <Method name="getCountersNumber" returnType="int" visibility="public"/>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="addCounter" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="getCounters" returnType="ArrayList&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="Counter" package="model" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Methods>
+        <Method name="getName" returnType="String" visibility="package"/>
+        <Method name="getFileName" returnType="String" visibility="package"/>
+        <Method name="toString" returnType="String" visibility="package"/>
+        <Method name="getImage" returnType="String" visibility="package"/>
+        <Method name="getSerialNumber" returnType="String" visibility="package"/>
+        <Method name="getPreviousData" returnType="double" visibility="package"/>
+        <Method name="getRate" returnType="double" visibility="package"/>
+        <Method name="setType" returnType="void" visibility="package">
+          <Argument type="CounterType" name="type"/>
+        </Method>
+        <Method name="setPreviousData" returnType="void" visibility="package">
+          <Argument type="double" name="previousData"/>
+        </Method>
+        <Method name="setName" returnType="void" visibility="package">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setRate" returnType="void" visibility="package">
+          <Argument type="double" name="rate"/>
+        </Method>
+        <Method name="setFileName" returnType="void" visibility="package">
+          <Argument type="String" name="f"/>
+        </Method>
+        <Method name="setSerialNumber" returnType="void" visibility="package">
+          <Argument type="String" name="ID"/>
+        </Method>
+        <Method name="assignToHouse" returnType="void" visibility="package">
+          <Argument type="Household" name="house"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="DataModel" package="model" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="instance" type="DataModel" visibility="private" isStatic="true" isVolatile="true"/>
+        <Field name="ser" type="appUtils.Serializer" visibility="package"/>
+        <Field name="infoBox" type="InfoBox" visibility="package"/>
+        <Field name="translation" type="TranslateTransition" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="DataModel" visibility="public" isStatic="true"/>
+        <Method name="addTab" returnType="void" visibility="public">
+          <Argument type="TabPane" name="tabPane"/>
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="loadTab" returnType="void" visibility="public">
+          <Argument type="TabPane" name="tabPane"/>
+          <Argument type="Household" name="hh"/>
+        </Method>
+        <Method name="restoreTabFromSave" returnType="void" visibility="public">
+          <Argument type="TabPane" name="tabPane"/>
+        </Method>
+        <Method name="removeHousehold" returnType="void" visibility="public">
+          <Argument type="Household" name="house"/>
+        </Method>
+        <Method name="saveCurrentState" returnType="void" visibility="public"/>
+        <Method name="writeCalculationToFile" returnType="void" visibility="public"/>
+        <Method name="setInfoBox" returnType="void" visibility="public">
+          <Argument type="InfoBox" name="infoBox"/>
+        </Method>
+        <Method name="showInfoMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="saveCalculation" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="uri"/>
+          <Argument type="String" name="text"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AbstractCounter" package="model" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="name" type="String" visibility="protected"/>
+        <Field name="rate" type="double" visibility="protected"/>
+        <Field name="type" type="CounterType" visibility="protected"/>
+        <Field name="house" type="Household" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setSerialNumber" returnType="void" visibility="public">
+          <Argument type="String" name="ID"/>
+        </Method>
+        <Method name="assignToHouse" returnType="void" visibility="public">
+          <Argument type="Household" name="house"/>
+        </Method>
+        <Method name="getSerialNumber" returnType="String" visibility="public"/>
+        <Method name="getImage" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setPreviousData" returnType="void" visibility="public">
+          <Argument type="double" name="previousData"/>
+        </Method>
+        <Method name="getPreviousData" returnType="double" visibility="public"/>
+        <Method name="setRate" returnType="void" visibility="public">
+          <Argument type="double" name="rate"/>
+        </Method>
+        <Method name="getRate" returnType="double" visibility="public"/>
+        <Method name="setFileName" returnType="void" visibility="public">
+          <Argument type="String" name="f"/>
+        </Method>
+        <Method name="getFileName" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getIcon" returnType="String" visibility="public"/>
+        <Method name="setType" returnType="void" visibility="public">
+          <Argument type="CounterType" name="type"/>
+        </Method>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AppLogger" package="appUtils" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="instance" type="AppLogger" visibility="private" isStatic="true" isVolatile="true"/>
+        <Field name="GLOBAL_LOGGER" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="AppLogger" visibility="public" isStatic="true"/>
+        <Method name="load" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="setupGlobalLogger" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="NIO" package="appUtils" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="instance" type="NIO" visibility="private" isStatic="true" isVolatile="true"/>
+        <Field name="appHome" type="String" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="NIO" visibility="public" isStatic="true"/>
+        <Method name="createFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="uri"/>
+        </Method>
+        <Method name="createDir" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="uri"/>
+        </Method>
+        <Method name="appendLine" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="uri"/>
+          <Argument type="String" name="text"/>
+        </Method>
+        <Method name="writeTextToFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="text"/>
+          <Argument type="String" name="uri"/>
+        </Method>
+        <Method name="fileToStream" returnType="void" visibility="private">
+          <Argument type="String" name="filePath"/>
+        </Method>
+        <Method name="fileToString" returnType="String" visibility="public">
+          <Argument type="String" name="filePath"/>
+        </Method>
+        <Method name="fileToByte" returnType="byte[]" visibility="private">
+          <Argument type="String" name="fileName"/>
+        </Method>
+        <Method name="renameFile" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="fileUri"/>
+          <Argument type="String" name="newName"/>
+        </Method>
+        <Method name="deleteFile" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="uri"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Serializer" package="appUtils" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="instance" type="Serializer" visibility="private" isStatic="true" isVolatile="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="Serializer" visibility="public" isStatic="true"/>
+        <Method name="saveObjects" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="file"/>
+          <Argument type="ArrayList&lt;T&gt;" name="objects"/>
+        </Method>
+        <Method name="restoreObjects" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="file"/>
+          <Argument type="Consumer" name="consumer"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="HouseholdController_I" package="controllers" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Methods>
+        <Method name="showCounters" returnType="void" visibility="package"/>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="tableCSV" source="fxml.TabController" target="fxml.TableViewCSVEditable" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fxml.MainDocumentController" target="model.DataModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="model" source="fxml.TableViewCSVEditable" target="model.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="type" source="model.AbstractCounter" target="model.CounterType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="countersListController" source="fxml.TabController" target="model.Counter" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListController&lt;Counter&gt;"/>
+    <UseRelation source="model.Counter" target="model.Household" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fxml.ListController" target="model.Counter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fxml.TableViewCSVEditable" target="fxml.CSVRow" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="appUtils.NIO" target="appUtils.NIO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="model.AbstractCustomCounter" target="model.AbstractCounter"/>
+    <HasRelation name="model" source="fxml.TabController" target="model.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="model.DataModel" target="model.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="appUtils.AppLogger" target="appUtils.AppLogger" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.DataModel" target="model.DataModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.DataModel" target="model.Household" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="infoBox" source="model.DataModel" target="fxml.InfoBox" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.DataModel" target="fxml.InfoBox" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="housholds" source="model.Household" target="model.Household" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Household&gt;"/>
+    <HasRelation name="house" source="model.AbstractCounter" target="model.Household" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="appUtils.NIO" target="appUtils.NIO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="model" source="fxml.ListController" target="model.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="type" source="model.CounterSolid" target="model.CounterType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="appUtils.Serializer" target="appUtils.Serializer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentCounter" source="fxml.TabController" target="model.AbstractCounter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="countersObservableList" source="fxml.TabController" target="model.Counter" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ObservableList&lt;Counter&gt;"/>
+    <HasRelation name="model" source="fxml.MainDocumentController" target="model.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="house" source="fxml.TabController" target="model.Household" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fxml.TabController" target="model.DataModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tableView" source="fxml.TableViewCSVEditable" target="fxml.CSVRow" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="appUtils.AppLogger" target="appUtils.AppLogger" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="model.AbstractCounter" target="model.Counter"/>
+    <IsRelation name="is" source="model.CounterSolid" target="model.AbstractCounter"/>
+    <UseRelation source="model.Counter" target="model.Counter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="house" source="model.CounterSolid" target="model.Household" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="appUtils.Serializer" target="appUtils.Serializer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.AbstractCounter" target="model.Household" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.AbstractCounter" target="model.Counter" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

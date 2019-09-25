@@ -7,11 +7,13 @@ import java.util.Date;
 public class CounterSolid extends AbstractCounter {
 
     CounterType type;
+    Household house;
 
-    public CounterSolid(String n) {
+    public CounterSolid(String n, Household h) {
         this.name = n;
-        count++;
-        this.serialNumber = count;
+        this.house = h;
+        house.increateCountersNumber();
+        this.serialNumber = house.getCountersNumber()+"";
 
     }
 

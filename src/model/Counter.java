@@ -7,6 +7,7 @@ public interface Counter extends Serializable, Comparable {
 	 String getFileName();
 	 String toString();
          String getImage();
+         String getSerialNumber();
          
 	 double getPreviousData();
 	 double getRate();
@@ -16,8 +17,9 @@ public interface Counter extends Serializable, Comparable {
          void setName(String name);
          void setRate(double rate);
          void setFileName(String f);
+         void setSerialNumber(String ID);
          void assignToHouse(Household house);
          
          
-         int getSerialNumber();
+         
 }

@@ -5,18 +5,16 @@ import java.util.Objects;
 // Use of the Template pattern
 public abstract class AbstractCounter implements Counter {
 
-    protected String name, csvFileName;
+    protected String name, csvFileName, serialNumber;
     protected double rate, previousData;
     protected CounterType type;
-    protected int serialNumber;
-    protected static int count;
     protected Household house;
 
     
-//    @Override
-//    public void setSerialNumber(){
-//        this.serialNumber = (int)(Math.random()*10000)+name.chars().sum();
-//    }
+    @Override
+    public void setSerialNumber(String ID){
+        this.serialNumber = ID;
+    }
     
     @Override
     public void assignToHouse(Household house){
@@ -24,7 +22,7 @@ public abstract class AbstractCounter implements Counter {
     }
     
     @Override
-    public int getSerialNumber(){
+    public String getSerialNumber(){
         return serialNumber;
     }
     
@@ -89,7 +87,7 @@ public abstract class AbstractCounter implements Counter {
     @Override
     public int compareTo(Object o) {
         if(o instanceof Counter)
-            return getSerialNumber() - ((Counter) o).getSerialNumber();
+            return getSerialNumber().compareTo(((Counter)o).getSerialNumber());    
         return -1;
     }
 }

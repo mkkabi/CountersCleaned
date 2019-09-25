@@ -26,5 +26,4 @@ public class InfoBox extends AnchorPane {
     public void setText(String message) {
         label.setText(message);
     }
-
 }

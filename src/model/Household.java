@@ -11,6 +11,7 @@ public class Household<T extends AbstractCounter> implements Serializable {
     private final String name;
     private ArrayList<T> counters;
     private final int ID;
+    private int countersNumber;
 
     public Household(String n) {
         ID = (int) (Math.random() * 10000);
@@ -18,6 +19,14 @@ public class Household<T extends AbstractCounter> implements Serializable {
         System.out.println("created Household with name " + n);
         counters = new ArrayList();
         housholds.add(this);
+    }
+    
+    public void increateCountersNumber(){
+        countersNumber ++;
+    }
+    
+    public int getCountersNumber(){
+        return this.countersNumber;
     }
 
     public String getName() {

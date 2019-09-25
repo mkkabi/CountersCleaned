@@ -42,6 +42,7 @@
                         <TableColumn maxWidth="100.0" minWidth="80.0" resizable="false" text="\$$" />
                     </columns>
                   </TableView>
+                  <Button fx:id="openEditCounterButton" layoutX="517.0" layoutY="28.0" mnemonicParsing="false" onAction="#openEditCounterPane" text="Button" />
                </children>
             </AnchorPane>
          </items>

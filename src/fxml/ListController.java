@@ -63,6 +63,13 @@ public class ListController<T> {
                 imageView.setFitWidth(30.0);
 
                 ContextMenu contextMenu = new ContextMenu();
+                
+//                MenuItem editCounter = new MenuItem();
+//                editCounter.textProperty().bind(Bindings.format("Edit Counter"));
+//                editCounter.setOnAction(event -> {
+//                    editCounter(item);
+//                });
+                
                 MenuItem deleteItem = new MenuItem();
                 deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", item));
                 deleteItem.setOnAction(event -> {
@@ -99,12 +106,12 @@ public class ListController<T> {
 
             @Override
             public void startEdit() {
-                super.startEdit();
-                textField.setText(getItem().toString());
-                setText(null);
-                setGraphic(textField);
-                textField.selectAll();
-                textField.requestFocus();
+//                super.startEdit();
+//                textField.setText(getItem().toString());
+//                setText(null);
+//                setGraphic(textField);
+//                textField.selectAll();
+//                textField.requestFocus();
             }
 
             @Override
@@ -125,6 +132,10 @@ public class ListController<T> {
 
         });
     }
+    
+//    public void editCounter(Counter c){
+//        TabController.editCounter(c);
+//    }
 
     public void removeItem(Counter t) {
         itemsObservableList.remove(t);
