@@ -32,7 +32,6 @@ public class Main extends Application {
         MainDocumentController mainDocumentController = mainDocumentLoader.getController();
 
         InfoBox infoBox = InfoBox.getInstance();
-
         infoBox.setVisible(false);
         root.getChildren().addAll(infoBox);
         

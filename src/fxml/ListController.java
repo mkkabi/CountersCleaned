@@ -64,11 +64,11 @@ public class ListController<T> {
 
                 ContextMenu contextMenu = new ContextMenu();
                 
-//                MenuItem editCounter = new MenuItem();
-//                editCounter.textProperty().bind(Bindings.format("Edit Counter"));
-//                editCounter.setOnAction(event -> {
-//                    editCounter(item);
-//                });
+                MenuItem editCounter = new MenuItem();
+                editCounter.textProperty().bind(Bindings.format("Edit Counter"));
+                editCounter.setOnAction(event -> {
+                    editCounter(item);
+                });
                 
                 MenuItem deleteItem = new MenuItem();
                 deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", item));
@@ -88,7 +88,7 @@ public class ListController<T> {
                     sortZA();
                 });
 
-                contextMenu.getItems().addAll(deleteItem, sortAZ, sortZA);
+                contextMenu.getItems().addAll(editCounter, deleteItem, sortAZ, sortZA);
 
                 if (empty) {
                     setContextMenu(null);
@@ -133,9 +133,9 @@ public class ListController<T> {
         });
     }
     
-//    public void editCounter(Counter c){
-//        TabController.editCounter(c);
-//    }
+    public void editCounter(Counter c){
+        EditCounterPane.getInstance().initBox(c);
+    }
 
     public void removeItem(Counter t) {
         itemsObservableList.remove(t);

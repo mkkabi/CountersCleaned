@@ -115,7 +115,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     @FXML
     public void openEditCounterPane(){
         System.out.println("button clicked");
-        EditCounterPane.getInstance().initBox();
+//        EditCounterPane.getInstance().initBox();
     }
 
     @FXML

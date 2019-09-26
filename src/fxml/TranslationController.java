@@ -51,14 +51,14 @@ public class TranslationController {
         tt.setRate(1);
         tt.play();
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                node.setVisible(false);
-                timer.cancel();
-            }
-        }, MESSAGE_DURATION);
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                node.setVisible(false);
+//                timer.cancel();
+//            }
+//        }, MESSAGE_DURATION);
         return tt;
     }
 }
