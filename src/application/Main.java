@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import model.DataModel;
 import appUtils.AppLogger;
 import appUtils.NIO;
+import fxml.EditCounterPane;
+import java.util.logging.Logger;
 
 public class Main extends Application {
 
@@ -29,10 +31,15 @@ public class Main extends Application {
         root = mainDocumentLoader.load();
         MainDocumentController mainDocumentController = mainDocumentLoader.getController();
 
-        InfoBox infoBox = new InfoBox();
+        InfoBox infoBox = InfoBox.getInstance();
 
         infoBox.setVisible(false);
         root.getChildren().addAll(infoBox);
+        
+        EditCounterPane editCounter = EditCounterPane.getInstance();
+        editCounter.setVisible(false);
+        root.getChildren().addAll(editCounter);
+        Logger.getGlobal().info("initialized Edit CounterPane");
 
         DataModel model = DataModel.getInstance();
         mainDocumentController.initModel(model);

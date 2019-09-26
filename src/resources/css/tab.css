@@ -7,7 +7,7 @@
 
 /*==========================*PopUPs, Dialog Boxes*=========================*/
 
-#contextMenu, #popUp1, #addHousePopUp, #addCounterPane, #infoBox {
+#contextMenu, #popUp1, #addHousePopUp, #addCounterPane, #infoBox, #editCounter {
     -fx-background-color: #eeeeee;
     -fx-spacing: 5;
     -fx-opacity: 0.95;

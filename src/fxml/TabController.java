@@ -39,10 +39,10 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     @FXML
     private ComboBox counterTypes;
     @FXML
-    private AnchorPane addCounterPane, tabAnchorPane, counterEditor;
+    private AnchorPane addCounterPane, tabAnchorPane;
   
     @FXML
-    private Button calculateButton, addCounterButton, openEditCounterButton;
+    private Button calculateButton, addCounterButton;
     @FXML
     private Label tabName;
     @FXML
@@ -114,8 +114,8 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     
     @FXML
     public void openEditCounterPane(){
-//        counterEditor.setLayoutX((tabAnchorPane.getWidth() - counterEditor.getPrefWidth()) / 2);
-        counterEditor.setVisible(true);
+        System.out.println("button clicked");
+        EditCounterPane.getInstance().initBox();
     }
 
     @FXML
