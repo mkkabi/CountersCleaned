@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.Counter;
 
@@ -79,14 +80,17 @@ public class EditCounterPane extends AnchorPane {
 
             pane.getChildren().addAll(textFields[i], labels[i]);
         }
-        submit = new Button("Submit");
+        ImageView close = new ImageView("/resources/images/close.png");
+        close.setFitHeight(10);
+        close.setFitWidth(10);
+        submit = new Button("Su.bmit");
         submit.setOnAction(t -> submitData());
         submit.setPrefWidth(120);
         submit.setAlignment(Pos.CENTER);
         pane.setBottomAnchor(submit, padding);
         pane.setLeftAnchor(submit, padding);
         pane.setRightAnchor(submit, padding);
-        pane.getChildren().add(submit);
+        pane.getChildren().addAll(submit, close);
 
     }
 

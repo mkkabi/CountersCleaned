@@ -63,13 +63,13 @@ public class ListController<T> {
                 imageView.setFitWidth(30.0);
 
                 ContextMenu contextMenu = new ContextMenu();
-                
+
                 MenuItem editCounter = new MenuItem();
                 editCounter.textProperty().bind(Bindings.format("Edit Counter"));
                 editCounter.setOnAction(event -> {
                     editCounter(item);
                 });
-                
+
                 MenuItem deleteItem = new MenuItem();
                 deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", item));
                 deleteItem.setOnAction(event -> {
@@ -132,9 +132,10 @@ public class ListController<T> {
 
         });
     }
-    
-    public void editCounter(Counter c){
+
+    public void editCounter(Counter c) {
         EditCounterPane.getInstance().initBox(c);
+        
     }
 
     public void removeItem(Counter t) {

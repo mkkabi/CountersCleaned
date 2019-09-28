@@ -53,7 +53,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
     private final Household house;
     private ObservableList<Counter> countersObservableList;
     private ListController<Counter> countersListController;
-    private AbstractCounter currentCounter;
+    private Counter currentCounter;
     TableViewCSVEditable tableCSV;
     private appUtils.NIO nio;
 
