@@ -8,6 +8,7 @@ public interface Counter extends Serializable, Comparable {
 	 String toString();
          String getImage();
          String getSerialNumber();
+         String getURI();
          
 	 double getPreviousData();
 	 double getRate();

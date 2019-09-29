@@ -22,9 +22,12 @@ import java.util.stream.Stream;
 public class NIO {
 
     private static volatile NIO instance = null;
-    public static String appHome = System.getProperty("user.home") + "/Counters/";
+    private String slash;
+    public static String appHome;
 
     private NIO() {
+        slash = System.getProperty("os.name").contains("Windows") ? "\\" : "/";
+        appHome = System.getProperty("user.home") + slash + "Counters" + slash;
         createDir(appHome);
     }
 
@@ -120,13 +123,14 @@ public class NIO {
         return bos != null ? bos.toByteArray() : null;
     }
 
-    public static boolean renameFile(String fileUri, String newName) {
-        return new File(fileUri).renameTo(new File(newName));
+    public static boolean renameFile(String oldFile, String newName) {
+        System.out.println("changing " + appHome + oldFile + " to " + appHome + newName);
+        return new File(appHome + oldFile).renameTo(new File(appHome + newName));
     }
 
-    public static boolean deleteFile(String uri) {
+    public static boolean deleteFile(String name) {
         try {
-            return Files.deleteIfExists(Paths.get(uri));
+            return Files.deleteIfExists(Paths.get(appHome + name));
 
         } catch (IOException ex) {
             Logger.getLogger(NIO.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,4 +138,7 @@ public class NIO {
         return false;
     }
 
+    public static void main(String[] args) {
+
+    }
 }

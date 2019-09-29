@@ -19,10 +19,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import model.DataModel;
 import model.Counter;
+import controllers.AppController;
 
 public class ListController<T> {
 
     private ObservableList itemsObservableList;
+
+    
     private final ListView listView;
     private ArrayList itemsArrayList;
     private final DataModel model;
@@ -129,19 +132,20 @@ public class ListController<T> {
                 setText(textField.getText());
                 setGraphic(imageView);
             }
-
         });
     }
 
     public void editCounter(Counter c) {
         EditCounterPane.getInstance().initBox(c);
-        
+        System.out.println("in ListController before setting current listView");
+        AppController.setCurrent(this);
     }
 
     public void removeItem(Counter t) {
         itemsObservableList.remove(t);
         itemsArrayList.remove(t);
         listView.refresh();
+        appUtils.NIO.deleteFile(t.getFileName());
         Logger.getGlobal().log(Level.INFO, "removed from list " + t.toString());
         model.showInfoMessage("removed from list " + t.toString());
     }
@@ -172,5 +176,9 @@ public class ListController<T> {
         listView.getSelectionModel().selectedItemProperty().addListener((ov, old_val, new_val) -> {
             c.accept(new_val);
         });
+    }
+    
+    public ObservableList getItemsObservableList() {
+        return itemsObservableList;
     }
 }

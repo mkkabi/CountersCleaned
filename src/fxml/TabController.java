@@ -90,7 +90,7 @@ public class TabController<T extends Counter> extends Tab implements Initializab
         nio = NIO.getInstance();
         countersListController.setSelectionModel(t -> {
             if(t!=null){
-            currentCounter = (AbstractCounter) t;
+            currentCounter = (Counter) t;
             previousDataTextField.setText(currentCounter.getPreviousData() + "");
             tableCSV.initialize(nio.appHome + currentCounter.getFileName());
             System.out.println("Curret counter = "+currentCounter.getFileName());

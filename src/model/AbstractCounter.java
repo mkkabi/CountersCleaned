@@ -1,5 +1,6 @@
 package model;
 
+import static appUtils.NIO.appHome;
 import java.util.Objects;
 
 // Use of the Template pattern
@@ -9,6 +10,7 @@ public abstract class AbstractCounter implements Counter {
     protected double rate, previousData;
     protected CounterType type;
     protected Household house;
+    protected String fileUri;
 
     
     @Override
@@ -63,7 +65,9 @@ public abstract class AbstractCounter implements Counter {
 
     @Override
     public void setFileName(String f) {
+        appUtils.NIO.renameFile(this.csvFileName, f);
         csvFileName = f;
+        
     }
 
     @Override
@@ -82,6 +86,11 @@ public abstract class AbstractCounter implements Counter {
 
     public void setType(CounterType type) {
         this.type = type;
+    }
+    
+    @Override
+    public String getURI(){
+        return appHome=this.csvFileName;
     }
     
     @Override

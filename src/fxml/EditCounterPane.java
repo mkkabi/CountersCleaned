@@ -45,6 +45,7 @@ public class EditCounterPane extends AnchorPane {
     }
 
     public void initBox(Counter counter) {
+        this.counter = counter;
         initPane(counter);
         translation = TranslationController.translateObjTopDown(this, this.getWidth(), this.getHeight());
 
@@ -106,6 +107,10 @@ public class EditCounterPane extends AnchorPane {
         counter.setFileName(fileName);
         counter.setSerialNumber(serialNumber);
         
+        System.out.println("in EditCounterPane submitData, before getting listView");
+        // refresh items list
+        controllers.AppController.getListController().getItemsObservableList().clear();
+        controllers.AppController.getListController().initList();
         this.setVisible(false);
     }
 }
